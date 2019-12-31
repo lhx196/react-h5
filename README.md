@@ -1,44 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 总结(后续会重写)
 
-## Available Scripts
+npx create-react-app my-app --template typescript
 
-In the project directory, you can run:
+react-router-dom @type/react-router-dom下载相关typescript类型文件 --.d.ts
 
-### `yarn start`
+package添加prettier配置
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```javascript
+"prettier": {
+	"printWidth": 120,
+	"singleQuote": true,
+	"trailingComma": "es5",
+	"bracketSpacing": true,
+	"jsxBracketSameLine": false,
+	"parser": "babylon",
+	"semi": true,
+	"requirePragma": false
+}
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+tsconfig添加默认路径
+```javascript
+	"baseUrl": "src"
+```
 
-### `yarn test`
+config --放置公用文件
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+routers.tsx 路由配置，根据路由字典动态生成组件，最终导出到App.ts中
 
-### `yarn build`
+type --放置ts定义类型，如组件中需要用到路由属性，必须先经过type定义
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+react-app-rewired  customize-cra 配置引入项目
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+--less-loader 必须引用customize-cra@next，官方还未解决最新版兼容问题
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+ts中需要在react-app-env.d.ts声明less类型说明
+```javascript
+declare module "*.module.less" {
+    const classes: { [key: string]: string };
+    export default classes;
+}
+```

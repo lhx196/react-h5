@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { TPage } from 'type';
+import styles from './index.module.less';
 
 const Page: React.SFC<TPage> = ({ history }) => {
   const jump = useCallback(() => {
@@ -7,7 +8,7 @@ const Page: React.SFC<TPage> = ({ history }) => {
   }, [history]);
   return (
     <>
-      <h1>User</h1>
+      <h1 className={styles.color}>User</h1>
       <button onClick={jump}>go Home</button>
     </>
   );
