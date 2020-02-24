@@ -28,7 +28,11 @@ config --放置公用文件
 
 routers.tsx 路由配置，根据路由字典动态生成组件，最终导出到App.ts中
 
-type --放置ts定义类型，如组件中需要用到路由属性，必须先经过type定义
+type --放置ts定义类型，如组件中需要用到路由、redux属性，必须先经过type定义
+
+action --redux action 声明文件，后续可配置统一导出
+
+reducer --reducer模块化，index统一导出
 
 react-app-rewired  customize-cra 配置引入项目
 
