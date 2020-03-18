@@ -34,7 +34,7 @@ export const myServerRequest = new FetchRequest({
 //同一域名不同路径的接口可单独封装并统一导出
 export const textService = (data?: any) => {
   return myServerRequest.request({
-    apiPath: '/vipCard/getVipCardList',
+    apiPath: '/abc/def',
     body: data,
   });
 };
