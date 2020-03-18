@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { TPage } from 'type';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
