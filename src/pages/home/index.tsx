@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { countAdd, countDec } from 'action/countAction';
 
 type TDispatch = {
-  add?: any,
-  dec?: any,
+  add: Function;
+  dec: Function;
 };
 type THome = TPage & TDispatch;
 
-const Page: React.SFC<THome> = props => {
+const Page: React.SFC<THome> = (props) => {
   const { history, store } = props;
   const { counter } = store;
   const [addcount, setaddCount] = useState('');
@@ -32,12 +32,11 @@ const Page: React.SFC<THome> = props => {
     <>
       <h1>Home</h1>
       <button onClick={jump}>go user</button>
-      <p>'----------------------------------------'</p>
       <p>counte:{counter.count}</p>
       <div>
         <input
           value={addcount}
-          onChange={e => {
+          onChange={(e) => {
             setaddCount(e.target.value);
           }}
         />{' '}
@@ -46,7 +45,7 @@ const Page: React.SFC<THome> = props => {
       <div>
         <input
           value={deccount}
-          onChange={e => {
+          onChange={(e) => {
             setdecCount(e.target.value);
           }}
         />{' '}

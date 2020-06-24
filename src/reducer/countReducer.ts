@@ -1,3 +1,4 @@
+import { COUNTER_ADD, COUNTER_DES } from 'action/actionType';
 /**
  * 计数信息
  */
@@ -12,14 +13,14 @@ let defaultState = {
   count: 0,
 };
 
-export default function counter(state: any = defaultState, action: any) {
+export default function counter(state: any = defaultState, action: typeAction) {
   switch (action.type) {
-    case 'COUNT_ADD':
+    case COUNTER_ADD:
       // 加
       return Object.assign({}, state, {
         count: state.count + action.data,
       });
-    case 'COUNT_DES':
+    case COUNTER_DES:
       // 减
       return Object.assign({}, state, {
         count: state.count - action.data,

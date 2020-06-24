@@ -4,23 +4,20 @@ import FetchRequest from 'common/request';
 const isProduct = false;
 
 const config = {
-  baseUrl: 'http://b.com/',
+  baseUrl: 'https://b.com/',
   productUrl: 'https://a.com/',
 };
 
 const headers = {
-  token: 'afsadfasdfasdfas',
+  userName: 'afsadfasdfasdfas',
 };
 
 export const myServerRequest = new FetchRequest({
   host: isProduct ? config.productUrl : config.baseUrl,
   requestInterception: (defaultConfig: any) => {
-    //业务层配置额外参数
-    const newConfig = {
-      headers,
-    };
-
-    return Object.assign(defaultConfig, newConfig);
+    //业务层配置额外参数逻辑
+    Object.assign(defaultConfig.headers, headers);
+    return defaultConfig;
   },
   responseInterception(res) {
     console.log('---------------相应拦截');
@@ -31,10 +28,13 @@ export const myServerRequest = new FetchRequest({
   },
 });
 
-//同一域名不同路径的接口可单独封装并统一导出
+//同一域名不同路径的接口可单独封装JS并统一导出
 export const textService = (data?: any) => {
   return myServerRequest.request({
-    apiPath: '/abc/def',
+    apiPath: '/api/merchant/channel/update/shopChannels',
+    defaultConfig: {
+      method: 'PUT',
+    },
     body: data,
   });
 };
